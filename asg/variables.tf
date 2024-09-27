@@ -51,3 +51,8 @@ variable "private_subnet_id" {
 variable "alb_target_group_arn" {
   type = string # VPC ID를 문자열 타입으로 입력 받음
 }
+
+variable "key_name" {
+  type = string # VPC ID를 문자열 타입으로 입력 받음
+}
+ 

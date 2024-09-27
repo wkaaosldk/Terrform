@@ -36,14 +36,3 @@ resource "aws_vpc_security_group_ingress_rule" "ssh" {
 
   depends_on = [aws_security_group.example]
 }
-
-resource "aws_vpc_security_group_ingress_rule" "ssh" {
-  security_group_id = aws_security_group.example.id
-
-  cidr_ipv4   = "0.0.0.0/0"
-  from_port   = 22
-  ip_protocol = "tcp"
-  to_port     = 22
-
-  depends_on = [aws_security_group.example]
-}

@@ -3,14 +3,15 @@ resource "aws_autoscaling_group" "example" {
   max_size             = var.max_size
   min_size             = var.min_size
   health_check_grace_period = 200 #인스턴스 시작후 상태 유예기간 설정
-  health_check_type         = "ELB"   # ELB(Elastic Load Balancer)를 사용한 상태 확인 방식 설정
+ # health_check_type         = "ELB"   # ELB(Elastic Load Balancer)를 사용한 상태 확인 방식 설정
   desired_capacity          = var.desired_capacity
   vpc_zone_identifier       = [var.public_subnet_id_1, var.public_subnet_id_2]
 
 
   # target_group_arns를 사용해 ALB 대상 그룹과 연결
   target_group_arns = [var.alb_target_group_arn]
-    launch_template {
+
+launch_template {
     id      = aws_launch_template.foobar.id
     version = "$Latest"  # 항상 최신 버전의 템플릿 사용
   }
@@ -20,12 +21,15 @@ tag {
   value               = "test"
   propagate_at_launch = true  # 새로 생성된 인스턴스에 태그 적용
 }
+
 }
 
 resource "aws_launch_template" "foobar" {
   name_prefix   = "foobar"
   image_id      = var.ami_id
   instance_type = "t2.micro"
+  vpc_security_group_ids = [var.security_group_id]
+  key_name = var.key_name
 }
 
 resource "aws_autoscaling_policy" "scale_up" {

@@ -27,6 +27,7 @@ resource "aws_key_pair" "dhk" {
 }
 */
 
+
 # EC2 인스턴스 생성(public subnet)
 resource "aws_instance" "public_instance" {
   ami           = "ami-077e1697513ccea8a"  # 사용할 AMI ID (지역에 맞는 AMI ID 사용)
@@ -47,7 +48,7 @@ resource "aws_instance" "public_instance" {
     Name = "MyEC2Instance"
   }
 }
-
+/*
 # EC2 인스턴스 생성(private subnet)
 resource "aws_instance" "private_instance" {
   ami           = "ami-077e1697513ccea8a"  # 사용할 AMI ID (지역에 맞는 AMI ID 사용)
@@ -64,3 +65,4 @@ resource "aws_instance" "private_instance" {
   }
 }
 
+*/

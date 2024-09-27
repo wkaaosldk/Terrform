@@ -69,6 +69,7 @@ module "asg"{
   public_subnet_id_2 = module.subnet.public_subnet_id_2
   private_subnet_id = module.subnet.private_subnet_id
   alb_target_group_arn = module.ELB.alb_target_group_arn
+  key_name = module.ec2.key_name
 }
 
 module "ELB"{
